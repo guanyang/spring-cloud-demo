@@ -1,0 +1,37 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: demo-gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: serviceRoute
+        uri: lb://DEMO-SERVICE-WEB
+        predicates:
+        - Path=/service/**
+        filters:
+        - StripPrefix=1
+      - id: webRoute
+        uri: lb://DEMO-WEB
+        predicates:
+        - Path=/web/**
+        filters:
+        - StripPrefix=1
+  zipkin:
+    base-url: http://172.19.33.203:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

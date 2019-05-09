@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CONFIG_INFO">
+
+    <update id="updateById" parameterType="org.gy.framework.demobusiness.model.ConfigInfo">
+        update config_info
+        <set>
+            <if test="configType != null">
+                config_type = #{configType,jdbcType=INTEGER},
+            </if>
+            <if test="configCode != null">
+                config_code = #{configCode,jdbcType=VARCHAR},
+            </if>
+            <if test="configName != null">
+                config_name = #{configName,jdbcType=VARCHAR},
+            </if>
+            <if test="configStatus != null">
+                config_status = #{configStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="employeeCode != null">
+                employee_code = #{employeeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="pConfigCode != null">
+                p_config_code = #{pConfigCode,jdbcType=VARCHAR},
+            </if>
+            <if test="pConfigName != null">
+                p_config_name = #{pConfigName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectById" parameterType="java.lang.Long" resultType="org.gy.framework.demobusiness.model.ConfigInfo">
+        select * from config_info WHERE id = #{id}
+    </select>
+</mapper>

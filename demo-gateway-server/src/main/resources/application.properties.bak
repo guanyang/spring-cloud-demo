@@ -1,0 +1,9 @@
+spring.application.name=demo-gateway-server
+server.port=8888
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
+
+spring.cloud.gateway.discovery.locator.enabled=true
+
+logging.level.org.springframework.cloud.gateway=debug
+
